@@ -126,20 +126,19 @@ mod tests {
             }
             cfg
         };
-        let root = crate::cwd().unwrap();
-        let manifest = |path| ProjectManifest::from_manifest_file(root.join(path)).unwrap();
         let candidates = [
-            (manifest("z/Cargo.toml"), cfg(&["z"])),
-            (manifest("a/Cargo.toml"), cfg(&["a", "b"])),
-            (manifest("b/Cargo.toml"), cfg(&["a", "b"])),
+            ("z", cfg(&["z"])),
+            ("a", cfg(&["a", "b"])),
+            ("b", cfg(&["a", "b"])),
         ];
         for order in [[0, 1, 2], [2, 1, 0]] {
             let mut plan = DependencyFiles::default();
-            for (manifest, cfg) in order.map(|index| &candidates[index]) {
-                plan.add_candidate(Path::new("lib.rs"), Some(cfg.clone()), manifest);
+            for index in order {
+                let (workspace, cfg) = &candidates[index];
+                plan.add_candidate(Path::new("lib.rs"), Some(cfg.clone()), Path::new(workspace));
             }
-            let expected = HashMap::from([(&candidates[2].0, vec![PathBuf::from("lib.rs")])]);
-            assert_eq!(plan.by_manifests(), expected);
+            let expected = HashMap::from([(Path::new("b"), vec![PathBuf::from("lib.rs")])]);
+            assert_eq!(plan.by_workspaces(), expected);
         }
     }
 }

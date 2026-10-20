@@ -1,4 +1,5 @@
 | Cargo.toml:0:0:0:0 | LoadManifest(Cargo.toml) |
+| Cargo.toml:0:0:0:0 | LoadManifest(Cargo.toml) |
 | exe/src/a_module.rs:0:0:0:0 | Extract(exe/src/a_module.rs) |
 | exe/src/a_module.rs:0:0:0:0 | LoadSource(exe/src/a_module.rs) |
 | exe/src/a_module.rs:0:0:0:0 | Parse(exe/src/a_module.rs) |

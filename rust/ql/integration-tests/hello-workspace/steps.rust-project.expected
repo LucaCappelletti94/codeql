@@ -13,3 +13,4 @@
 | lib/src/lib.rs:0:0:0:0 | LoadSource(lib/src/lib.rs) |
 | lib/src/lib.rs:0:0:0:0 | Parse(lib/src/lib.rs) |
 | rust-project.json:0:0:0:0 | LoadManifest(rust-project.json) |
+| rust-project.json:0:0:0:0 | LoadManifest(rust-project.json) |
